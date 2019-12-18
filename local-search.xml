@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>01背包问题</title>
+    <link href="undefined2019/12/18/%E4%BB%A3%E7%A0%81/"/>
+    <url>2019/12/18/%E4%BB%A3%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<p>有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。<br>第 i 件物品的体积是 vi，价值是 wi。<br>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>输出最大价值。</p><a id="more"></a><p>输入格式<br>第一行两个整数，N，V，用空格隔开，分别表示物品数量和背包容积。<br>接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 件物品的体积和价值。<br>输出格式<br>输出一个整数，表示最大价值。<br>数据范围<br>0&lt;N,V≤1000<br>0&lt;vi,wi≤1000<br>输入样例<br>4 5<br>1 2<br>2 4<br>3 4<br>4 5</p><p>输出样例：<br>8</p><p>//无优化<br>#include&lt;bits/stdc++.h&gt;</p><p>using namespace std;</p><p>const int N = 1010;</p><p>int n, m;<br>int v[N], w[N];<br>int f[N][N];</p><p>int main() {<br>    cin &gt;&gt; n &gt;&gt; m;<br>    for(int i = 1; i &lt;= n; i++)<br>             cin &gt;&gt; v[i] &gt;&gt; w[i];<br>    for(int i = 1; i &lt;= n; i++)<br>    {<br>            for(int j = 0; j &lt;= m; j++)<br>            {<br>                f[i][j] = f[i-1][j];<br>            if(j&gt;=v[i])<br>                f[i][j] = max(f[i][j], f[i-1][j-v[i]]+w[i])<br>            }<br>    }</p><pre><code>cout &lt;&lt; f[n][m] &lt;&lt; endl;</code></pre><p> return 0;<br>}</p><p>//有优化版<br>/*</p><ol><li>f[i] 仅用到了f[i-1]层, </li><li>j与j-v[i] 均小于j</li><li>若用到上一层的状态时,从大到小枚举, 反之从小到大哦</li></ol><p>*/<br>#include&lt;bits/stdc++.h&gt;</p><p>using namespace std;</p><p>const int N = 1010;</p><p>int n, m;<br>int v[N], w[N];<br>int f[N];</p><p>int main() {<br>    cin &gt;&gt; n &gt;&gt; m;<br>    for(int i = 1; i &lt;= n; i++)<br>        cin &gt;&gt; v[i] &gt;&gt; w[i];<br>    for(int i = 1; i &lt;= n; i++)<br>        for(int j = m; j &gt;= v[i]; j–)<br>            f[j] = max(f[j], f[j-v[i]]+w[i]);<br>    cout &lt;&lt; f[m] &lt;&lt; endl;<br>     return 0;<br>}</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>新文章</title>
+    <link href="undefined2019/12/18/%E6%96%B0%E6%96%87%E7%AB%A0/"/>
+    <url>2019/12/18/%E6%96%B0%E6%96%87%E7%AB%A0/</url>
+    
+    <content type="html"><![CDATA[<p>1<br>2<br>3<br>4<br>5<br>6</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="undefined2019/12/18/hello-world/"/>
+    <url>2019/12/18/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
