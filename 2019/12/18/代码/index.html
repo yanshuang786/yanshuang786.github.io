@@ -5,17 +5,17 @@
   
 
   
-  <title>新文章 | Hexo</title>
+  <title>01背包问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456">
+  <meta name="description" content="有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。第 i 件物品的体积是 vi，价值是 wi。求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。输出最大价值。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新文章">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;18&#x2F;%E6%96%B0%E6%96%87%E7%AB%A0&#x2F;index.html">
+<meta property="og:title" content="01背包问题">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;18&#x2F;%E4%BB%A3%E7%A0%81&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="123456">
+<meta property="og:description" content="有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。第 i 件物品的体积是 vi，价值是 wi。求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。输出最大价值。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-12-18T06:49:12.000Z">
-<meta property="article:modified_time" content="2019-12-18T06:49:57.504Z">
+<meta property="article:published_time" content="2019-12-18T07:39:04.000Z">
+<meta property="article:modified_time" content="2019-12-18T07:49:48.686Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -66,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-新文章" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-代码" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/12/18/%E6%96%B0%E6%96%87%E7%AB%A0/" class="article-date">
-  <time datetime="2019-12-18T06:49:12.000Z" itemprop="datePublished">2019-12-18</time>
+    <a href="/2019/12/18/%E4%BB%A3%E7%A0%81/" class="article-date">
+  <time datetime="2019-12-18T07:39:04.000Z" itemprop="datePublished">2019-12-18</time>
 </a>
     
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      新文章
+      01背包问题
     </h1>
   
 
@@ -88,12 +88,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1<br>2<br>3<br>4<br>5<br>6</p>
+        <p>有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。<br>第 i 件物品的体积是 vi，价值是 wi。<br>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>输出最大价值。</p>
+<a id="more"></a>
+
+
+<p>输入格式<br>第一行两个整数，N，V，用空格隔开，分别表示物品数量和背包容积。<br>接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 件物品的体积和价值。<br>输出格式<br>输出一个整数，表示最大价值。<br>数据范围<br>0&lt;N,V≤1000<br>0&lt;vi,wi≤1000<br>输入样例<br>4 5<br>1 2<br>2 4<br>3 4<br>4 5</p>
+<p>输出样例：<br>8</p>
+<p>//无优化<br>#include&lt;bits/stdc++.h&gt;</p>
+<p>using namespace std;</p>
+<p>const int N = 1010;</p>
+<p>int n, m;<br>int v[N], w[N];<br>int f[N][N];</p>
+<p>int main() {<br>    cin &gt;&gt; n &gt;&gt; m;<br>    for(int i = 1; i &lt;= n; i++)<br>             cin &gt;&gt; v[i] &gt;&gt; w[i];<br>    for(int i = 1; i &lt;= n; i++)<br>    {<br>            for(int j = 0; j &lt;= m; j++)<br>            {<br>                f[i][j] = f[i-1][j];<br>            if(j&gt;=v[i])<br>                f[i][j] = max(f[i][j], f[i-1][j-v[i]]+w[i])<br>            }<br>    }</p>
+<pre><code>cout &lt;&lt; f[n][m] &lt;&lt; endl;</code></pre><p> return 0;<br>}</p>
+<p>//有优化版<br>/*</p>
+<ol>
+<li>f[i] 仅用到了f[i-1]层, </li>
+<li>j与j-v[i] 均小于j</li>
+<li>若用到上一层的状态时,从大到小枚举, 反之从小到大哦</li>
+</ol>
+<p>*/<br>#include&lt;bits/stdc++.h&gt;</p>
+<p>using namespace std;</p>
+<p>const int N = 1010;</p>
+<p>int n, m;<br>int v[N], w[N];<br>int f[N];</p>
+<p>int main() {<br>    cin &gt;&gt; n &gt;&gt; m;<br>    for(int i = 1; i &lt;= n; i++)<br>        cin &gt;&gt; v[i] &gt;&gt; w[i];<br>    for(int i = 1; i &lt;= n; i++)<br>        for(int j = m; j &gt;= v[i]; j–)<br>            f[j] = max(f[j], f[j-v[i]]+w[i]);<br>    cout &lt;&lt; f[m] &lt;&lt; endl;<br>     return 0;<br>}</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/18/%E6%96%B0%E6%96%87%E7%AB%A0/" data-id="ck4axqugr00006wurahr83e9w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/18/%E4%BB%A3%E7%A0%81/" data-id="ck4azzweo0000sgurghrqbo4k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -102,19 +124,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/12/18/%E4%BB%A3%E7%A0%81/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          01背包问题
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/18/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/12/18/%E6%96%B0%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">新文章</div>
     </a>
   
 </nav>
