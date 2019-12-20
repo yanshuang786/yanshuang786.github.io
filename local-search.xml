@@ -4,11 +4,24 @@
   
   
   <entry>
+    <title>64位整数乘法 (位运算)</title>
+    <link href="undefined2019/12/20/64%E4%BD%8D%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95/"/>
+    <url>2019/12/20/64%E4%BD%8D%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<p>求 a 乘 b 对 p 取模的值。</p><p>输入格式<br>第一行输入整数a，第二行输入整数b，第三行输入整数p。</p><p>输出格式<br>输出一个整数，表示a*b mod p的值。</p><a id="more"></a><p>数据范围<br>1≤a,b,p≤1018<br>输入样例：<br>3<br>4<br>5<br>输出样例：<br>2</p><pre><code> using namespace std;int main(){    long long m, k, p;    cin >> m >>k >> p;    long long  res = 0;    while (k)    {        if (k&1) res = (res + m) % p * 1ll;//如果是0，k&1返回0；否则返回1        m = 2  * m % p *1ll;        k >>= 1;//往右移动1位    1101--> 110    }    cout<< res << endl;    return 0;} </code></pre>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>a^b（位运算）</title>
     <link href="undefined2019/12/20/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
     <url>2019/12/20/%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
     
-    <content type="html"><![CDATA[<p>求 a 的 b 次方对 p 取模的值。<br>输入格式<br>三个整数 a,b,p ,在同一行用空格隔开。<br>输出格式<br>输出一个整数，表示a^b mod p的值。<br>数据范围<br>0≤a,b,p≤109<br>输入样例：<br>3 2 7<br>输出样例：<br>2</p><pre><code>#include<iostream>using namespace std;int main(){    int m, k, p;    cin >> m >>k >> p;    int res = 1 % p;    while (k)    {        if (k&1) res = res * 1ll * m % p;//如果是0，k&1返回0；否则返回1        m = m * 1ll * m % p;        k >>= 1;//往右移动1位    1101--> 110    }    cout<< res << endl;}//1ll转换为long long 型</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>求 a 的 b 次方对 p 取模的值。<br>输入格式<br>三个整数 a,b,p ,在同一行用空格隔开。<br>输出格式<br>输出一个整数，表示a^b mod p的值。</p><a id="more"></a><p>数据范围<br>0≤a,b,p≤109<br>输入样例：<br>3 2 7<br>输出样例：<br>2</p><pre><code>#include <iostream>using namespace std;int main(){    int m, k, p;    cin >> m >>k >> p;    int res = 1 % p;    while (k)    {        if (k&1) res = res * 1ll * m % p;//如果是0，k&1返回0；否则返回1        m = m * 1ll * m % p;        k >>= 1;//往右移动1位    1101--> 110    }    cout<< res << endl;}//1ll转换为long long 型</code></pre>]]></content>
     
     
     
