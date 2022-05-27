@@ -1,2 +1,2 @@
-# www.web.diandicoding.com
+# web.diandicoding.com
 个人博客
